@@ -10,7 +10,6 @@
       --bg2:#ffe8f1;
       --ink:#1c1b22;
       --muted:#5a5a6a;
-      --panel:#ffffff;
       --stroke:#1c1b22;
       --pink:#ff4fa3;
       --blue:#2e7bff;
@@ -40,13 +39,12 @@
       backdrop-filter: blur(10px);
       border-bottom: 3px solid var(--stroke);
     }
-    .wrap{max-width:1100px;margin:0 auto;padding:18px 16px}
 
-    h1{margin:0;font-size:18px;letter-spacing:.2px;line-height:1.1}
-    .sub{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.35}
+    .wrap{max-width:1100px;margin:0 auto;padding:18px 16px}
 
     .top{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
     .brand{display:flex;gap:12px;align-items:center;min-width:260px}
+
     .logo{
       width:52px;height:52px;
       border-radius:16px;
@@ -65,6 +63,9 @@
       font-size:18px;
       transform: rotate(8deg);
     }
+
+    h1{margin:0;font-size:18px;letter-spacing:.2px;line-height:1.1}
+    .sub{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.35}
 
     .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
 
@@ -113,7 +114,7 @@
       background: rgba(255,255,255,.65);
       font-size:13px;
       color:var(--muted);
-      max-width: 860px;
+      max-width: 900px;
     }
 
     code{
@@ -126,85 +127,6 @@
     }
 
     main{padding: 10px 0 28px}
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap:14px;
-      padding: 6px 16px 0;
-      max-width:1100px;
-      margin:0 auto;
-    }
-
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.72));
-      border:3px solid var(--stroke);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      display:flex;
-      min-height:104px;
-      overflow:hidden;
-      position:relative;
-    }
-    .card:before{
-      content: "PROGRESS";
-      position:absolute;
-      right:-34px;
-      top:10px;
-      transform: rotate(18deg);
-      padding:6px 40px;
-      font-size:11px;
-      font-weight:900;
-      letter-spacing:.8px;
-      border:3px solid var(--stroke);
-      background: var(--yellow);
-      box-shadow: 0 8px 0 rgba(28,27,34,.12);
-    }
-
-    .left{width:92px;display:flex;align-items:center;justify-content:center;padding:12px}
-    .avatar{
-      width:68px;height:68px;
-      border-radius:16px;
-      border:3px solid var(--stroke);
-      background: linear-gradient(135deg, rgba(46,123,255,.18), rgba(255,79,163,.16));
-      box-shadow: 0 10px 0 rgba(28,27,34,.12);
-      overflow:hidden;
-      display:flex;align-items:center;justify-content:center;
-    }
-    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-    .avatar .fallback{font-size:28px}
-
-    .mid{flex:1;padding:14px 10px 14px 0;display:flex;flex-direction:column;justify-content:center;gap:7px;min-width:0}
-    .name{
-  font-weight:950;
-  font-size:16px;
-  line-height:1.25;
-  white-space:normal;
-  overflow:visible;
-  text-overflow:clip;
-}
-    .meta{color:var(--muted);font-size:13px;font-weight:800;display:flex;flex-direction:column;gap:8px}
-
-    .row{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
-    .bar{
-      height:10px;
-      border-radius:999px;
-      border:2px solid rgba(28,27,34,.35);
-      background: rgba(255,255,255,.65);
-      overflow:hidden;
-      width: min(320px, 100%);
-    }
-    .bar > i{
-      display:block;
-      height:100%;
-      width:0%;
-      background: linear-gradient(90deg, var(--mint), var(--blue), var(--pink));
-    }
 
     .leaderCard{
       border:3px solid var(--stroke);
@@ -239,17 +161,124 @@
     .leaderName{font-weight:950;font-size:18px;line-height:1.2}
     .leaderMeta{color:var(--muted);font-weight:900;font-size:13px}
 
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap:14px;
+      padding: 6px 16px 0;
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.72));
+      border:3px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display:flex;
+      min-height:112px;
+      overflow:hidden;
+      position:relative;
+    }
+    .card:before{
+      content: "PROGRESS";
+      position:absolute;
+      right:-34px;
+      top:10px;
+      transform: rotate(18deg);
+      padding:6px 40px;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.8px;
+      border:3px solid var(--stroke);
+      background: var(--yellow);
+      box-shadow: 0 8px 0 rgba(28,27,34,.12);
+    }
+
+    .left{width:92px;display:flex;align-items:center;justify-content:center;padding:12px}
+    .avatar{
+      width:68px;height:68px;
+      border-radius:16px;
+      border:3px solid var(--stroke);
+      background: linear-gradient(135deg, rgba(46,123,255,.18), rgba(255,79,163,.16));
+      box-shadow: 0 10px 0 rgba(28,27,34,.12);
+      overflow:hidden;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .avatar .fallback{font-size:28px}
+
+    .mid{flex:1;padding:14px 10px 14px 0;display:flex;flex-direction:column;justify-content:center;gap:8px;min-width:0}
+
+    .name{
+      font-weight:950;
+      font-size:16px;
+      line-height:1.25;
+      white-space:normal;
+      overflow:visible;
+    }
+
+    .meta{color:var(--muted);font-size:13px;font-weight:800;display:flex;flex-direction:column;gap:8px}
+    .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:4px 10px;
+      border:2px solid rgba(28,27,34,.45);
+      border-radius: 999px;
+      background: rgba(47,230,184,.18);
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .bar{
+      height:10px;
+      border-radius:999px;
+      border:2px solid rgba(28,27,34,.35);
+      background: rgba(255,255,255,.65);
+      overflow:hidden;
+      width: min(320px, 100%);
+    }
+    .bar > i{
+      display:block;
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, var(--mint), var(--blue), var(--pink));
+    }
+
     .right{min-width:120px;padding:14px 14px 14px 8px;display:flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap}
     .check{font-size:20px;filter: drop-shadow(0 10px 0 rgba(28,27,34,.10))}
+
+    .empty{
+      color: rgba(90,90,106,.85);
+      font-weight:900;
+      font-size:13px;
+      padding:6px 10px;
+      border:2px solid rgba(28,27,34,.28);
+      border-radius:999px;
+      background: rgba(255,255,255,.65);
+    }
+
+    .footer-tip{
+      max-width:1100px;
+      margin: 14px auto 0;
+      padding: 0 16px;
+      color: rgba(90,90,106,.9);
+      font-size: 13px;
+      font-weight:800;
+    }
 
     @media (max-width:520px){
       .card:before{display:none}
       .right{min-width:100px}
+      .grid{grid-template-columns: 1fr}
     }
   </style>
 </head>
 <body>
-<header>
+  <header>
     <div class="wrap">
       <div class="top">
         <div class="brand">
@@ -274,35 +303,45 @@
       </div>
     </div>
   </header>
-<main>
+
+  <main>
     <section class="wrap" style="padding-top:14px">
       <div id="leader" aria-live="polite"></div>
     </section>
+
     <div id="grid" class="grid" aria-live="polite"></div>
+
     <div class="footer-tip">✅ = <b>каждые 5</b> заданий • Полоса под именем показывает прогресс до следующей ✅</div>
   </main>
-<script>
+
+  <script>
     const grid = document.getElementById('grid');
     const stats = document.getElementById('stats');
     const leader = document.getElementById('leader');
     const q = document.getElementById('q');
 
-    // ✅ CSV лежит рядом с index.html в репозитории (GitHub Pages)
+    // Файл лежит в репозитории рядом с index.html
     const CSV_URL = 'progress.csv';
 
     let ALL = [];
 
-    window.addEventListener('DOMContentLoaded', async () => {
-      await loadCSV();
-      q.addEventListener('input', () => renderFiltered());
+    window.addEventListener('DOMContentLoaded', () => {
+      loadCSV();
+      q.addEventListener('input', renderFiltered);
     });
 
     async function loadCSV(){
       try{
-        // Если открыть файл напрямую (file://), fetch не сработает
+        // ВАЖНО: если открыть index.html как file://, автозагрузка не сработает.
         if (location.protocol === 'file:'){
-          stats.textContent = 'Открой через GitHub Pages (не file://)';
-          leader.innerHTML = '<div class="leaderCard"><div><div class="leaderTitle">⚠️ Локально</div><div class="leaderName">Fetch не работает из file://</div><div class="leaderMeta">Запусти через GitHub Pages или любой локальный сервер (например, VS Code Live Server).</div></div></div>';
+          stats.textContent = 'Открой через GitHub Pages';
+          leader.innerHTML = '';
+          const warn = document.createElement('div');
+          warn.className = 'leaderCard';
+          const left = document.createElement('div');
+          left.innerHTML = '<div class="leaderTitle">⚠️ Локально</div><div class="leaderName">Fetch не работает из file://</div><div class="leaderMeta">Открой страницу через GitHub Pages или локальный сервер (например, VS Code Live Server).</div>';
+          warn.appendChild(left);
+          leader.appendChild(warn);
           return;
         }
 
@@ -310,6 +349,268 @@
         if (!res.ok) throw new Error('CSV not found');
         const text = await res.text();
         const rows = parseCSV(text);
-        ALL = rowsTo
+        ALL = rowsToStudents(rows);
+        renderFiltered();
+      } catch(e){
+        stats.textContent = 'CSV не найден';
+        grid.innerHTML = '';
+        leader.innerHTML = '';
+        const msg = document.createElement('div');
+        msg.className = 'leaderCard';
+        msg.innerHTML = '<div><div class="leaderTitle">Не вижу progress.csv</div><div class="leaderMeta">Проверь: файл должен быть в той же папке, что и index.html, и называться точно progress.csv</div></div>';
+        leader.appendChild(msg);
+      }
+    }
+
+    function renderFiltered(){
+      const term = (q.value || '').trim().toLowerCase();
+      const list = term ? ALL.filter(s => s.name.toLowerCase().includes(term)) : ALL;
+      stats.textContent = 'Учеников: ' + list.length;
+      renderLeader(ALL);
+      renderList(list);
+    }
+
+    function renderLeader(students){
+      leader.innerHTML = '';
+      if (!students.length) return;
+
+      const best = [...students].sort((a,b) => (b.tasks - a.tasks) || a.name.localeCompare(b.name, 'ru'))[0];
+      const checks = checksCount(best.tasks);
+      const toNext = best.tasks % 5 === 0 ? 5 : (5 - (best.tasks % 5));
+      const pct = progressPercent(best.tasks);
+
+      const box = document.createElement('div');
+      box.className = 'leaderCard';
+
+      const info = document.createElement('div');
+      const t1 = document.createElement('div');
+      t1.className = 'leaderTitle';
+      t1.textContent = '🏆 Лидер';
+
+      const nm = document.createElement('div');
+      nm.className = 'leaderName';
+      nm.textContent = best.name;
+
+      const meta = document.createElement('div');
+      meta.className = 'leaderMeta';
+      meta.textContent = best.tasks + ' заданий • ✅ × ' + checks + ' • до следующей ✅: ' + toNext;
+
+      const bar = document.createElement('div');
+      bar.className = 'bar';
+      const fill = document.createElement('i');
+      fill.style.width = pct + '%';
+      bar.appendChild(fill);
+
+      info.appendChild(t1);
+      info.appendChild(nm);
+      info.appendChild(meta);
+      info.appendChild(bar);
+
+      const checksBox = document.createElement('div');
+      checksBox.style.fontWeight = '950';
+      const shown = Math.min(checks, 12);
+      checksBox.textContent = (shown > 0 ? '✅'.repeat(shown) : '');
+      if (checks > 12) checksBox.textContent += '…';
+
+      box.appendChild(info);
+      box.appendChild(checksBox);
+      leader.appendChild(box);
+    }
+
+    function renderList(students){
+      grid.innerHTML = '';
+      if (!students.length){
+        const empty = document.createElement('div');
+        empty.className = 'pill';
+        empty.textContent = 'Ничего не найдено.';
+        grid.appendChild(empty);
+        return;
+      }
+      const frag = document.createDocumentFragment();
+      for (const s of students) frag.appendChild(createCard(s));
+      grid.appendChild(frag);
+    }
+
+    // CSV без регулярных выражений, чтобы не было сюрпризов
+    function parseCSV(text){
+      const t = text.split('\r\n').join('\n').split('\r').join('\n');
+      const lines = t.split('\n').map(x => x.trim()).filter(Boolean);
+      if (!lines.length) return [];
+
+      const delimiter = (lines[0].includes(';') && !lines[0].includes(',')) ? ';' : ',';
+      return lines.map(line => splitCSVLine(line, delimiter));
+    }
+
+    function splitCSVLine(line, delimiter){
+      const out = [];
+      let cur = '';
+      let inQuotes = false;
+      for (let i=0; i<line.length; i++){
+        const ch = line[i];
+        if (ch === '"'){
+          // двойная кавычка внутри кавычек
+          if (inQuotes && i + 1 < line.length && line[i+1] === '"'){
+            cur += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (ch === delimiter && !inQuotes){
+          out.push(cur.trim());
+          cur = '';
+        } else {
+          cur += ch;
+        }
+      }
+      out.push(cur.trim());
+      return out;
+    }
+
+    function rowsToStudents(rows){
+      if (!rows.length) return [];
+      const header = rows[0].map(x => (x || '').trim().toLowerCase());
+      const iName = header.indexOf('фио');
+      const iTasks = header.indexOf('задания');
+      const iAvatar = header.indexOf('аватарка');
+      const hasHeader = iName !== -1 && iTasks !== -1;
+
+      const start = hasHeader ? 1 : 0;
+      const students = [];
+
+      for (let r=start; r<rows.length; r++){
+        const row = rows[r];
+        const name = hasHeader ? row[iName] : row[0];
+        const tasksRaw = hasHeader ? row[iTasks] : row[1];
+        const avatar = hasHeader ? (row[iAvatar] || '') : (row[2] || '');
+        if (!name) continue;
+        students.push({
+          name: String(name).trim(),
+          tasks: toInt(tasksRaw),
+          avatar: String(avatar || '').trim()
+        });
+      }
+
+      students.sort((a,b) => (b.tasks - a.tasks) || a.name.localeCompare(b.name, 'ru'));
+      return students;
+    }
+
+    function toInt(v){
+      const s = String(v == null ? '' : v);
+      let num = '';
+      for (let i=0; i<s.length; i++){
+        const ch = s[i];
+        if ((ch >= '0' && ch <= '9') || (ch === '-' && num.length === 0)) num += ch;
+      }
+      const n = parseInt(num || '0', 10);
+      return Number.isFinite(n) ? Math.max(0, n) : 0;
+    }
+
+    function checksCount(tasks){
+      return Math.floor(tasks / 5);
+    }
+
+    function progressPercent(tasks){
+      const mod = tasks % 5;
+      if (tasks > 0 && mod === 0) return 100;
+      return Math.round((mod / 5) * 100);
+    }
+
+    function createCard(s){
+      const card = document.createElement('article');
+      card.className = 'card';
+
+      const left = document.createElement('div');
+      left.className = 'left';
+
+      const avatarBox = document.createElement('div');
+      avatarBox.className = 'avatar';
+
+      const fallback = document.createElement('div');
+      fallback.className = 'fallback';
+      fallback.textContent = '🎓';
+
+      if (s.avatar){
+        const img = document.createElement('img');
+        img.alt = 'Аватар: ' + s.name;
+        img.loading = 'lazy';
+        img.src = s.avatar;
+        img.addEventListener('error', () => {
+          avatarBox.innerHTML = '';
+          avatarBox.appendChild(fallback);
+        });
+        avatarBox.appendChild(img);
+      } else {
+        avatarBox.appendChild(fallback);
+      }
+
+      left.appendChild(avatarBox);
+
+      const mid = document.createElement('div');
+      mid.className = 'mid';
+
+      const name = document.createElement('div');
+      name.className = 'name';
+      name.textContent = s.name;
+
+      const meta = document.createElement('div');
+      meta.className = 'meta';
+
+      const row = document.createElement('div');
+      row.className = 'row';
+
+      const tasksText = document.createElement('span');
+      tasksText.textContent = s.tasks + ' заданий';
+
+      const badge = document.createElement('span');
+      badge.className = 'badge';
+      badge.textContent = '✅ × ' + checksCount(s.tasks);
+
+      row.appendChild(tasksText);
+      row.appendChild(badge);
+
+      const bar = document.createElement('div');
+      bar.className = 'bar';
+      const fill = document.createElement('i');
+      fill.style.width = progressPercent(s.tasks) + '%';
+      bar.appendChild(fill);
+
+      meta.appendChild(row);
+      meta.appendChild(bar);
+
+      mid.appendChild(name);
+      mid.appendChild(meta);
+
+      const right = document.createElement('div');
+      right.className = 'right';
+
+      const count = checksCount(s.tasks);
+      if (count === 0){
+        const tiny = document.createElement('span');
+        tiny.className = 'empty';
+        tiny.textContent = 'пока без ✅';
+        right.appendChild(tiny);
+      } else {
+        const shown = Math.min(count, 12);
+        for (let i=0; i<shown; i++){
+          const c = document.createElement('span');
+          c.className = 'check';
+          c.textContent = '✅';
+          right.appendChild(c);
+        }
+        if (count > 12){
+          const dots = document.createElement('span');
+          dots.className = 'empty';
+          dots.textContent = '…';
+          right.appendChild(dots);
+        }
+      }
+
+      card.appendChild(left);
+      card.appendChild(mid);
+      card.appendChild(right);
+
+      return card;
+    }
+  </script>
 </body>
 </html>
