@@ -68,21 +68,30 @@
 
     .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
 
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;
+    .search{
+      display:flex;
+      align-items:center;
+      gap:10px;
       padding:10px 14px;
       border-radius:999px;
       border:3px solid var(--stroke);
-      background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.75));
+      background: rgba(255,255,255,.85);
       box-shadow: var(--shadow);
-      cursor:pointer;
-      user-select:none;
-      transition: transform .08s ease;
-      font-weight:800;
-      letter-spacing:.2px;
+      min-width: 260px;
+      max-width: 420px;
+      width: min(420px, 70vw);
     }
-    .btn:active{transform: translateY(2px) scale(.99)}
-    input[type=file]{display:none}
+    .search span{font-weight:900}
+    .search input{
+      border:0;
+      outline:0;
+      background: transparent;
+      width:100%;
+      font-weight:800;
+      color:var(--ink);
+      font-size:13px;
+    }
+    .search input::placeholder{color: rgba(90,90,106,.8)}
 
     .pill{
       padding:9px 12px;
@@ -173,7 +182,62 @@
   overflow:visible;
   text-overflow:clip;
 }
-    .meta{color:var(--muted);font-size:13px;font-weight:800}
+    .meta{color:var(--muted);font-size:13px;font-weight:800;display:flex;flex-direction:column;gap:8px}
+
+    .row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .bar{
+      height:10px;
+      border-radius:999px;
+      border:2px solid rgba(28,27,34,.35);
+      background: rgba(255,255,255,.65);
+      overflow:hidden;
+      width: min(320px, 100%);
+    }
+    .bar > i{
+      display:block;
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, var(--mint), var(--blue), var(--pink));
+    }
+
+    .leaderCard{
+      border:3px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.72));
+      box-shadow: var(--shadow);
+      padding:14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      position:relative;
+      overflow:hidden;
+    }
+    .leaderCard:before{
+      content:"LEADER";
+      position:absolute;
+      left:-30px;
+      top:10px;
+      transform: rotate(-12deg);
+      padding:6px 44px;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.8px;
+      border:3px solid var(--stroke);
+      background: var(--pink);
+      color:white;
+      box-shadow: 0 8px 0 rgba(28,27,34,.12);
+    }
+    .leaderTitle{font-weight:950;font-size:14px}
+    .leaderName{font-weight:950;font-size:18px;line-height:1.2}
+    .leaderMeta{color:var(--muted);font-weight:900;font-size:13px}
 
     .right{min-width:120px;padding:14px 14px 14px 8px;display:flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap}
     .check{font-size:20px;filter: drop-shadow(0 10px 0 rgba(28,27,34,.10))}
@@ -197,9 +261,11 @@
         </div>
 
         <div class="controls">
-          <label class="btn" for="csvFile">📄 Загрузить CSV</label>
-          <input id="csvFile" type="file" accept=".csv,text/csv" />
-          <div id="stats" class="pill">Файл не загружен</div>
+          <div class="search" role="search">
+            <span>🔎</span>
+            <input id="q" type="search" placeholder="Поиск по ФИО…" autocomplete="off" />
+          </div>
+          <div id="stats" class="pill">Загрузка…</div>
         </div>
       </div>
 
@@ -209,39 +275,41 @@
     </div>
   </header>
 <main>
-  <div id="grid" class="grid"></div>
-</main>
+    <section class="wrap" style="padding-top:14px">
+      <div id="leader" aria-live="polite"></div>
+    </section>
+    <div id="grid" class="grid" aria-live="polite"></div>
+    <div class="footer-tip">✅ = <b>каждые 5</b> заданий • Полоса под именем показывает прогресс до следующей ✅</div>
+  </main>
 <script>
-const fileInput=document.getElementById('csvFile');
-const grid=document.getElementById('grid');
-const stats=document.getElementById('stats');
-// 🔹 автозагрузка CSV из папки проекта
-window.addEventListener('DOMContentLoaded', async () => {
-  try {
-    const res = await fetch('progress.csv');
-    if (!res.ok) throw new Error('CSV not found');
-    const text = await res.text();
-    const rows = parseCSV(text);
-    const students = rowsToStudents(rows);
-    render(students);
-  } catch (e) {
-    stats.textContent = 'CSV не найден';
-  }
-});
+    const grid = document.getElementById('grid');
+    const stats = document.getElementById('stats');
+    const leader = document.getElementById('leader');
+    const q = document.getElementById('q');
 
-// 🔹 ручная загрузка CSV (опционально)
-fileInput.addEventListener('change', async (e) => {
-  const file = e.target.files?.[0];
-  if (!file) return;
-  const text = await file.text();
-  const rows = parseCSV(text);
-  const students = rowsToStudents(rows);
-  render(students);
-});const r=parseCSV(t);render(toStudents(r));});
-function parseCSV(t){return t.split(/\r?\n/).filter(l=>l.trim()).map(l=>l.split(','));}
-function toStudents(r){const h=r[0].map(x=>x.trim().toLowerCase());const n=h.indexOf('фио');const z=h.indexOf('задания');const a=h.indexOf('аватарка');return r.slice(1).map(x=>({name:x[n],tasks:parseInt(x[z])||0,avatar:x[a]}));}
-function render(s){grid.innerHTML='';stats.textContent=`Учеников: ${s.length}`;s.forEach(x=>grid.append(card(x)));}
-function card(s){const c=document.createElement('div');c.className='card';c.innerHTML=`<div class='left'><div class='avatar'>${s.avatar?`<img src='${s.avatar}'>`:'🎓'}</div></div><div class='mid'><div class='name'>${s.name}</div><div class='meta'>${s.tasks} заданий</div></div><div class='right'>${'✅'.repeat(Math.floor(s.tasks/5))||'<span class="meta">—</span>'}</div>`;return c;}
-</script>
+    // ✅ CSV лежит рядом с index.html в репозитории (GitHub Pages)
+    const CSV_URL = 'progress.csv';
+
+    let ALL = [];
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      await loadCSV();
+      q.addEventListener('input', () => renderFiltered());
+    });
+
+    async function loadCSV(){
+      try{
+        // Если открыть файл напрямую (file://), fetch не сработает
+        if (location.protocol === 'file:'){
+          stats.textContent = 'Открой через GitHub Pages (не file://)';
+          leader.innerHTML = '<div class="leaderCard"><div><div class="leaderTitle">⚠️ Локально</div><div class="leaderName">Fetch не работает из file://</div><div class="leaderMeta">Запусти через GitHub Pages или любой локальный сервер (например, VS Code Live Server).</div></div></div>';
+          return;
+        }
+
+        const res = await fetch(CSV_URL, { cache: 'no-store' });
+        if (!res.ok) throw new Error('CSV not found');
+        const text = await res.text();
+        const rows = parseCSV(text);
+        ALL = rowsTo
 </body>
 </html>
